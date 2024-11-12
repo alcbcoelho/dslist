@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_game")
+@Table(name = "tb_game")	// mudando o nome da tabela no BD para 'tb_game'
 public class Game {
 	
 	@Id
@@ -18,26 +18,33 @@ public class Game {
 	private Long id;
 	private String title;
 	
-	@Column(name = "game_year")
+	@Column(name = "game_year")		// mudando nome da coluna no BD ('year' é uma palavra reservada no SQL)
 	private Integer year;
 	private String genre;
-	private String platform;
+	private String platforms;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TEXT") // mudando o tipo do dado da coluna de varchar (com limite de 255 caracteres)
+										// para um tipo que aceita textos longos.
 	private String shortDescription;
+	
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
+	private Double score;
 	
 	public Game() {}
 
-	public Game(Long id, String title, Integer year, String genre, String platform, String imgUrl,
-			String shortDescription, String longDescription) {
+	public Game(Long id, String title, Integer year, String genre, String platforms, String imgUrl,
+			String shortDescription, String longDescription, Double score) {
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.platform = platform;
+		this.platforms = platforms;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
+		this.score = score;
 	}
 
 	public Long getId() {
@@ -72,12 +79,12 @@ public class Game {
 		this.genre = genre;
 	}
 
-	public String getPlatform() {
-		return platform;
+	public String getPlatforms() {
+		return platforms;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setPlatforms(String platforms) {
+		this.platforms = platforms;
 	}
 
 	public String getImgUrl() {
@@ -102,6 +109,14 @@ public class Game {
 
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
+	}
+	
+	public Double getScore() {
+		return score;
+	}
+	
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	@Override
