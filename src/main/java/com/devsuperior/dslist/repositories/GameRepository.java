@@ -11,7 +11,7 @@ import com.devsuperior.dslist.projections.GameMinProjection;
 public interface GameRepository extends JpaRepository<Game, Long> {
 	
 	//	CONSULTA PERSONALIZADA SQL
-	//	nativeQuery = true: condição necessária em consultas SQL
+	//	nativeQuery = true: condição necessária em queries SQL (o Spring trabalha com uma linguagem própria p/ queries fora o SQL, daí nesse caso seria 'false')
 	@Query(nativeQuery = true, value = """
 			SELECT tb_game.id, tb_game.title, tb_game.game_year AS gameYear, tb_game.img_url AS imgUrl,
 			tb_game.short_description AS shortDescription, tb_belonging.position
